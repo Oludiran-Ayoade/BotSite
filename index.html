@@ -510,23 +510,27 @@
 <!-- Payment -->
 <section id="payment">
     <h2 class="section-title">Pay with crypto.</h2>
-    <p class="section-sub">Send SOL to the address below, then message us with your license key to activate.</p>
-    
+    <p class="section-sub">Send SOL to the address below. Your subscription is activated automatically.</p>
+
     <div class="payment-container">
         <div class="payment-box">
             <h3>SOL (Solana) Payment Address</h3>
-            <p>Send the exact amount for your chosen plan, then contact us with your license key and transaction hash.</p>
+            <p>Send the exact SOL amount for your chosen plan. Credits are granted automatically within ~30 seconds.</p>
             <div class="crypto-address" onclick="copyAddress()" id="address-text">
                 7Vi1geePu9wift4qnbPNnjSs7v8jybeNxx2XnxfVa9VD
             </div>
             <div class="crypto-network">Network: Solana (SOL) · Copy by clicking</div>
 
+            <div id="sol-prices" style="margin: 24px 0; text-align: left; max-width: 400px; margin-left: auto; margin-right: auto;">
+                <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 12px;">Loading live SOL prices...</p>
+            </div>
+
             <ul class="payment-steps">
                 <li><span class="num">1</span> Download and install Assistant</li>
                 <li><span class="num">2</span> Open the app — you'll get a license key</li>
-                <li><span class="num">3</span> Send SOL to the address above ($5 weekly / $9 monthly / $19 pro / $5+ credit packs)</li>
-                <li><span class="num">4</span> Message us with your key + transaction hash</li>
-                <li><span class="num">5</span> We activate your subscription — usually within minutes</li>
+                <li><span class="num">3</span> Send the SOL amount shown above to the wallet address</li>
+                <li><span class="num">4</span> Credits are granted automatically — no need to contact us</li>
+                <li><span class="num">5</span> Check status below with your transaction hash if needed</li>
             </ul>
         </div>
 
@@ -546,6 +550,12 @@
 </footer>
 
 <script>
+    // Helper to escape HTML (prevents XSS)
+    function escapeHtml(text) {
+        const map = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'};
+        return String(text).replace(/[&<>"']/g, m => map[m]);
+    }
+
     // Copy crypto address on click
     function copyAddress() {
         const text = document.getElementById('address-text').textContent.trim();
@@ -578,11 +588,41 @@
         }
     }
 
+    // Load live SOL prices from backend
+    async function loadSolPrices() {
+        const container = document.getElementById('sol-prices');
+        if (!container) return;
+
+        try {
+            const res = await fetch('https://godsfavor.onrender.com/payment/info');
+            const data = await res.json();
+
+            if (!data.sol_price_usd) {
+                container.innerHTML = '<p style="color: var(--text-muted); font-size: 13px;">SOL prices temporarily unavailable. Send USD-equivalent SOL.</p>';
+                return;
+            }
+
+            const solPrice = data.sol_price_usd.toFixed(2);
+            let html = '<div style="background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px;">';
+            html += '<div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">1 SOL = $' + escapeHtml(solPrice) + ' · Send exact SOL amount</div>';
+            html += '<table style="width: 100%; font-size: 13px; border-collapse: collapse;">';
+            html += '<tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0; color: var(--text-secondary);">Weekly</td><td style="text-align: right; color: var(--accent); font-family: monospace;">' + (data.plans.Weekly?.price_sol ? escapeHtml(data.plans.Weekly.price_sol) + ' SOL' : '—') + '</td><td style="text-align: right; color: var(--text-muted);">$5</td></tr>';
+            html += '<tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0; color: var(--text-secondary);">Monthly</td><td style="text-align: right; color: var(--accent); font-family: monospace;">' + (data.plans.Monthly?.price_sol ? escapeHtml(data.plans.Monthly.price_sol) + ' SOL' : '—') + '</td><td style="text-align: right; color: var(--text-muted);">$9</td></tr>';
+            html += '<tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0; color: var(--text-secondary);">Pro</td><td style="text-align: right; color: var(--accent); font-family: monospace;">' + (data.plans.Pro?.price_sol ? escapeHtml(data.plans.Pro.price_sol) + ' SOL' : '—') + '</td><td style="text-align: right; color: var(--text-muted);">$19</td></tr>';
+            html += '<tr><td style="padding: 8px 0; color: var(--text-muted); font-size: 12px;" colspan="3">Credit packs: $5/$7/$15/$25 → equivalent SOL</td></tr>';
+            html += '</table></div>';
+
+            container.innerHTML = html;
+        } catch (e) {
+            container.innerHTML = '<p style="color: var(--text-muted); font-size: 13px;">Could not load SOL prices. Send USD-equivalent SOL to the address.</p>';
+        }
+    }
+
     // Check payment status via transaction hash
     function checkPaymentStatus() {
         const txHash = document.getElementById('txHashInput').value.trim();
         const statusDiv = document.getElementById('paymentStatus');
-        
+
         if (!txHash) {
             statusDiv.style.display = 'block';
             statusDiv.style.background = 'rgba(255,193,7,0.1)';
@@ -607,12 +647,12 @@
                     statusDiv.style.background = 'rgba(76,175,80,0.1)';
                     statusDiv.style.borderLeft = '3px solid var(--success)';
                     statusDiv.style.color = 'var(--success)';
-                    statusDiv.innerHTML = `✓ Payment confirmed!<br>License: ${data.license_key}<br>Credits: ${data.credits}<br>Status: ${data.status}`;
+                    statusDiv.innerHTML = '✓ Payment confirmed!<br>License: ' + escapeHtml(data.license_key) + '<br>Credits: ' + escapeHtml(data.credits) + '<br>Status: ' + escapeHtml(data.status);
                 } else {
                     statusDiv.style.background = 'rgba(244,67,54,0.1)';
                     statusDiv.style.borderLeft = '3px solid #f44336';
                     statusDiv.style.color = '#f44336';
-                    statusDiv.innerHTML = '✗ Transaction not found. Check the hash or contact support.';
+                    statusDiv.innerHTML = '✗ Transaction not found. It may still be processing — wait 30 seconds and try again.';
                 }
             })
             .catch(e => {
@@ -634,8 +674,10 @@
         });
     });
 
-    // Show selected plan in payment section
+    // On page load: fetch SOL prices + show selected plan
     window.addEventListener('load', () => {
+        loadSolPrices();
+
         const plan = sessionStorage.getItem('selectedPlan');
         const amount = sessionStorage.getItem('selectedAmount');
         if (plan && amount) {
@@ -644,7 +686,7 @@
             statusDiv.style.background = 'rgba(79,140,255,0.1)';
             statusDiv.style.borderLeft = '3px solid var(--accent)';
             statusDiv.style.color = 'var(--text-secondary)';
-            statusDiv.innerHTML = `💰 Selected: <strong>${plan}</strong> ($${amount})`;
+            statusDiv.innerHTML = '💰 Selected: <strong>' + escapeHtml(plan) + '</strong> ($' + escapeHtml(amount) + ')';
         }
     });
 </script>
