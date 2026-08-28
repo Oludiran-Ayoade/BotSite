@@ -27,6 +27,7 @@
             --surface-hover: #16201c;
             --border: rgba(255,255,255,0.08);
             --text: #f0f4f1;
+            --text-primary: #f0f4f1;
             --text-secondary: #9ca8a3;
             --text-muted: #5c6b66;
             --accent: #10b981;
@@ -351,9 +352,9 @@
     <p>A Chrome extension that analyzes what's on your screen in real-time. Multiple-choice answers, verification checklists, and gesture assessment — all in a compact overlay.</p>
 
     <div class="downloads">
-        <a href="https://chromewebstore.google.com/detail/YOUR_EXTENSION_ID" class="btn btn-primary" id="download-ext" target="_blank">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-            Add to Chrome — Free
+        <a href="#install" class="btn btn-primary" id="download-ext">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+            Get the Extension — Free
         </a>
         <a href="#install" class="btn btn-secondary">
             How to Install
@@ -609,14 +610,6 @@
     function escapeHtml(text) {
         const map = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'};
         return String(text).replace(/[&<>"']/g, m => map[m]);
-    }
-
-    // Select a pricing plan — stores selection and scrolls to payment
-    function selectPlan(planName, amount) {
-        sessionStorage.setItem('selectedPlan', planName);
-        sessionStorage.setItem('selectedAmount', amount);
-        const payment = document.getElementById('payment');
-        if (payment) payment.scrollIntoView({ behavior: 'smooth' });
     }
 
     // Scroll to payment section

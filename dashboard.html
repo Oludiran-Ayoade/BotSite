@@ -214,13 +214,14 @@
             font-size: 14px;
         }
         @media (max-width: 600px) {
-            nav { flex-direction: column; gap: 12px; }
-            .nav-links { display: none; }
+            nav { flex-direction: column; gap: 12px; padding: 14px 20px; }
+            .nav-links { font-size: 13px; }
             .container { padding: 20px 16px; }
             h1 { font-size: 24px; }
             .grid { grid-template-columns: 1fr; }
             table { font-size: 12px; }
             th, td { padding: 12px; }
+            #paymentTable { overflow-x: auto; }
         }
     </style>
 </head>
@@ -348,12 +349,17 @@
                 document.getElementById('activePlan').textContent = histData.active_plan;
                 document.getElementById('planStatus').className = 'status-badge status-active';
                 document.getElementById('planStatus').textContent = 'Active';
+                if (histData.plan_expiry) {
+                    document.getElementById('planExpiry').textContent = 'Expires: ' + new Date(histData.plan_expiry).toLocaleDateString();
+                }
             }
-            if (histData.total_credits) {
+            if (histData.total_credits != null) {
                 document.getElementById('totalCredits').textContent = histData.total_credits;
+                document.getElementById('creditsDetail').textContent = 'Credits remaining';
             }
             if (histData.last_payment) {
                 document.getElementById('lastPayment').textContent = new Date(histData.last_payment).toLocaleDateString();
+                document.getElementById('paymentDate').textContent = 'Last payment date';
             }
         } catch (e) {
             tableDiv.innerHTML = '<p style="color: #f44336;">We couldn\'t load your payment history right now. Please try again in a moment.</p>';
