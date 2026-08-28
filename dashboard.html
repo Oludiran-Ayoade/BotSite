@@ -6,18 +6,18 @@
     <title>Customer Dashboard — Assistant</title>
     <meta name="description" content="Track your payments, manage subscriptions, and monitor credit usage.">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%234f8cff'/><circle cx='50' cy='50' r='20' fill='white' opacity='0.9'/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2310b981'/><circle cx='50' cy='50' r='20' fill='white' opacity='0.9'/></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #0a0e27;
-            --surface: #111629;
+            --bg: #0a0f0d;
+            --surface: #111714;
             --border: rgba(255,255,255,0.08);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255,255,255,0.7);
-            --text-muted: rgba(255,255,255,0.4);
-            --accent: #4f8cff;
-            --success: #4caf50;
+            --text-primary: #f0f4f1;
+            --text-secondary: #9ca8a3;
+            --text-muted: #5c6b66;
+            --accent: #10b981;
+            --success: #34d399;
             --radius: 12px;
         }
         body {
@@ -111,7 +111,7 @@
             margin-top: 8px;
         }
         .status-active {
-            background: rgba(76,175,80,0.15);
+            background: rgba(52,211,153,0.15);
             color: var(--success);
         }
         .status-pending {
@@ -137,7 +137,7 @@
             overflow: hidden;
         }
         th {
-            background: rgba(79,140,255,0.05);
+            background: rgba(16,185,129,0.05);
             padding: 16px;
             text-align: left;
             font-size: 13px;
@@ -156,7 +156,7 @@
             border-bottom: none;
         }
         tr:hover {
-            background: rgba(79,140,255,0.05);
+            background: rgba(16,185,129,0.05);
         }
         .tx-hash {
             font-family: monospace;
@@ -184,7 +184,7 @@
         button {
             padding: 12px 24px;
             background: var(--accent);
-            color: white;
+            color: #18181b;
             border: none;
             border-radius: var(--radius);
             font-weight: 600;
@@ -192,7 +192,7 @@
             transition: all 0.2s;
         }
         button:hover {
-            background: #5a7fff;
+            background: #34d399;
             transform: translateY(-2px);
         }
         .empty-state {
@@ -301,7 +301,7 @@
             const data = await res.json();
 
             if (!data.valid) {
-                tableDiv.innerHTML = '<p style="color: #f44336;">Invalid license key</p>';
+                tableDiv.innerHTML = '<p style="color: #f44336;">We couldn\'t find your account. Please check your license key and try again.</p>';
                 return;
             }
 
@@ -356,7 +356,7 @@
                 document.getElementById('lastPayment').textContent = new Date(histData.last_payment).toLocaleDateString();
             }
         } catch (e) {
-            tableDiv.innerHTML = '<p style="color: #f44336;">Could not load payment history. Try again or contact support.</p>';
+            tableDiv.innerHTML = '<p style="color: #f44336;">We couldn\'t load your payment history right now. Please try again in a moment.</p>';
         }
     }
 
@@ -400,10 +400,10 @@
                     </div>
                 `;
             } else {
-                resultDiv.innerHTML = '<p style="color: #f44336;">Transaction not found. Check the hash or contact support.</p>';
+                resultDiv.innerHTML = '<p style="color: #f44336;">We couldn\'t find that transaction. Please check the hash and try again.</p>';
             }
         } catch (e) {
-            resultDiv.innerHTML = '<p style="color: #f44336;">Could not check status. Try again or contact support.</p>';
+            resultDiv.innerHTML = '<p style="color: #f44336;">We couldn\'t check your payment status right now. Please try again in a moment.</p>';
         }
     }
 
