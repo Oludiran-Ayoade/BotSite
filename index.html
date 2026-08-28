@@ -351,9 +351,9 @@
     <p>A Chrome extension that analyzes what's on your screen in real-time. Multiple-choice answers, verification checklists, and gesture assessment — all in a compact overlay.</p>
 
     <div class="downloads">
-        <a href="extension.zip" download class="btn btn-primary" id="download-ext">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download Extension — Free
+        <a href="https://chromewebstore.google.com/detail/YOUR_EXTENSION_ID" class="btn btn-primary" id="download-ext" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+            Add to Chrome — Free
         </a>
         <a href="#install" class="btn btn-secondary">
             How to Install
@@ -364,52 +364,55 @@
 
 <!-- Install Instructions -->
 <section id="install" style="padding: 60px 20px; max-width: 680px; margin: 0 auto;">
-    <h2 class="section-title">Install in 4 easy steps</h2>
-    <p class="section-sub">No technical skills needed. Takes less than a minute.</p>
-    <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin-top: 24px; text-align: left;">
+    <h2 class="section-title">How to install</h2>
+    <p class="section-sub">Two ways to get the extension. Pick whichever is easiest for you.</p>
 
-        <!-- Step 1: Download -->
-        <div style="display: flex; gap: 16px; margin-bottom: 24px;">
-            <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #18181b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">1</div>
-            <div>
-                <div style="color: var(--text); font-weight: 600; font-size: 15px; margin-bottom: 6px;">Download the extension</div>
-                <a href="extension.zip" download class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 14px;">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Download Extension (.zip)
-                </a>
+    <!-- Method 1: Chrome Web Store (preferred) -->
+    <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-top: 24px; text-align: left; margin-bottom: 20px;">
+        <h3 style="color: var(--accent); font-size: 16px; margin-bottom: 16px;">Option 1 — Chrome Web Store (recommended)</h3>
+        <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <div style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #18181b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">1</div>
+            <div style="color: var(--text-secondary); font-size: 14px; padding-top: 4px;">Click <strong style="color: var(--text);">"Add to Chrome"</strong> at the top of this page.</div>
+        </div>
+        <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <div style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">2</div>
+            <div style="color: var(--text-secondary); font-size: 14px; padding-top: 4px;">Click <strong style="color: var(--text);">"Add extension"</strong> in the Chrome popup that appears.</div>
+        </div>
+        <div style="display: flex; gap: 16px;">
+            <div style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">3</div>
+            <div style="color: var(--text-secondary); font-size: 14px; padding-top: 4px;">Click the Assistant icon in your toolbar, enter your email, and start analyzing.</div>
+        </div>
+    </div>
+
+    <!-- Method 2: Manual install (developer mode) -->
+    <details style="background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 0;">
+        <summary style="padding: 20px 28px; cursor: pointer; color: var(--text-secondary); font-size: 15px; font-weight: 600; list-style: none;">
+            Option 2 — Manual install (for developers) ▾
+        </summary>
+        <div style="padding: 0 28px 28px; text-align: left;">
+            <div style="display: flex; gap: 16px; margin-bottom: 20px; margin-top: 12px;">
+                <div style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">1</div>
+                <div>
+                    <div style="color: var(--text); font-weight: 600; font-size: 14px; margin-bottom: 6px;">Download the extension ZIP</div>
+                    <a href="extension.zip" download class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; font-size: 13px;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        Download (.zip)
+                    </a>
+                </div>
+            </div>
+            <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+                <div style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">2</div>
+                <div style="color: var(--text-secondary); font-size: 14px; padding-top: 4px;">Unzip the file. Inside you'll find a <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome-extension</code> folder.</div>
+            </div>
+            <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+                <div style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">3</div>
+                <div style="color: var(--text-secondary); font-size: 14px; padding-top: 4px;">Go to <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome://extensions</code>, turn on <strong style="color: var(--text);">Developer mode</strong>, click <strong style="color: var(--text);">Load unpacked</strong>, and select the folder.</div>
             </div>
         </div>
+    </details>
 
-        <!-- Step 2: Unzip -->
-        <div style="display: flex; gap: 16px; margin-bottom: 24px;">
-            <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">2</div>
-            <div>
-                <div style="color: var(--text); font-weight: 600; font-size: 15px; margin-bottom: 4px;">Unzip the file</div>
-                <div style="color: var(--text-secondary); font-size: 14px;">Find the downloaded <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">extension.zip</code> in your Downloads folder and double-click to unzip it. Inside you'll see a folder called <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome-extension</code>.</div>
-            </div>
-        </div>
-
-        <!-- Step 3: Open Chrome extensions page -->
-        <div style="display: flex; gap: 16px; margin-bottom: 24px;">
-            <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">3</div>
-            <div>
-                <div style="color: var(--text); font-weight: 600; font-size: 15px; margin-bottom: 4px;">Open Chrome's extensions page</div>
-                <div style="color: var(--text-secondary); font-size: 14px;">Open a new tab in Chrome, type <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome://extensions</code> in the address bar, and press Enter.</div>
-            </div>
-        </div>
-
-        <!-- Step 4: Load unpacked -->
-        <div style="display: flex; gap: 16px; margin-bottom: 8px;">
-            <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">4</div>
-            <div>
-                <div style="color: var(--text); font-weight: 600; font-size: 15px; margin-bottom: 4px;">Turn on Developer Mode and load the extension</div>
-                <div style="color: var(--text-secondary); font-size: 14px;">Toggle <strong style="color: var(--text);">Developer mode</strong> on (top-right switch). Then click <strong style="color: var(--text);">Load unpacked</strong> and select the <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome-extension</code> folder from step 2.</div>
-            </div>
-        </div>
-
-        <div style="margin-top: 24px; padding: 16px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; font-size: 14px; color: var(--text-secondary);">
-            <strong style="color: var(--accent);">That's it!</strong> The Assistant icon appears in your Chrome toolbar. Click it, enter your email, and you get 5 free analyses instantly. The green Analyze pill will appear on your current page.
-        </div>
+    <div style="margin-top: 24px; padding: 16px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; font-size: 14px; color: var(--text-secondary); text-align: left;">
+        <strong style="color: var(--accent);">That's it!</strong> The Assistant icon appears in your Chrome toolbar. Click it, enter your email, and you get 5 free analyses instantly. The green Analyze pill will appear on your current page.
     </div>
 </section>
 
@@ -569,7 +572,7 @@
         </div>
         <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
             <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">Does it work on Firefox or Safari?</h4>
-            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Currently it's Chrome-only. It works on any computer that runs Chrome, including Mac, Windows, and Linux.</p>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Currently it's Chrome-only. It works on any computer that runs Chrome, including Mac, Windows, and Linux. You can install it directly from the Chrome Web Store.</p>
         </div>
         <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
             <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">Is my screen data stored?</h4>
