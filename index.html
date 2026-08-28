@@ -335,8 +335,8 @@
     <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
-        <a href="#payment">Payment</a>
-        <a href="#download">Download</a>
+        <a href="#faq">FAQ</a>
+        <a href="#install">Install</a>
         <a href="dashboard.html" style="color: var(--accent);">Dashboard</a>
     </div>
 </nav>
@@ -351,27 +351,64 @@
     <p>A Chrome extension that analyzes what's on your screen in real-time. Multiple-choice answers, verification checklists, and gesture assessment — all in a compact overlay.</p>
 
     <div class="downloads">
-        <a href="#install" class="btn btn-primary" id="download-ext">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-            Add to Chrome — Free
+        <a href="extension.zip" download class="btn btn-primary" id="download-ext">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download Extension — Free
+        </a>
+        <a href="#install" class="btn btn-secondary">
+            How to Install
         </a>
     </div>
     <p class="download-note">5 free analyses · No credit card required · Takes 30 seconds to install</p>
 </div>
 
 <!-- Install Instructions -->
-<section id="install" style="padding: 60px 20px; max-width: 640px; margin: 0 auto;">
+<section id="install" style="padding: 60px 20px; max-width: 680px; margin: 0 auto;">
     <h2 class="section-title">Install in 4 easy steps</h2>
     <p class="section-sub">No technical skills needed. Takes less than a minute.</p>
-    <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-top: 24px; text-align: left;">
-        <ol style="margin: 0 0 0 20px; padding: 0; font-size: 15px; line-height: 2.2; color: var(--text-secondary);">
-            <li><strong style="color: var(--text-primary);">Download</strong> — <a href="https://github.com/Oludiran-Ayoade/Godsfavor/archive/refs/heads/main.zip" style="color: var(--accent); font-weight: 600;">Click here to download the extension</a></li>
-            <li><strong style="color: var(--text-primary);">Unzip</strong> the file, then open the <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome-extension</code> folder inside it</li>
-            <li><strong style="color: var(--text-primary);">Open Chrome</strong> and type <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome://extensions</code> in the address bar</li>
-            <li>Turn on <strong style="color: var(--text-primary);">Developer mode</strong> (top-right switch) → click <strong style="color: var(--text-primary);">Load unpacked</strong> → select the <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome-extension</code> folder</li>
-        </ol>
-        <div style="margin-top: 20px; padding: 14px 16px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px; font-size: 13px; color: var(--text-secondary);">
-            <strong style="color: var(--accent);">That's it!</strong> The dassistant icon appears in your Chrome toolbar. You get 5 free analyses automatically. Click the icon anytime to see your license key.
+    <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin-top: 24px; text-align: left;">
+
+        <!-- Step 1: Download -->
+        <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #18181b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">1</div>
+            <div>
+                <div style="color: var(--text); font-weight: 600; font-size: 15px; margin-bottom: 6px;">Download the extension</div>
+                <a href="extension.zip" download class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 14px;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Download Extension (.zip)
+                </a>
+            </div>
+        </div>
+
+        <!-- Step 2: Unzip -->
+        <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">2</div>
+            <div>
+                <div style="color: var(--text); font-weight: 600; font-size: 15px; margin-bottom: 4px;">Unzip the file</div>
+                <div style="color: var(--text-secondary); font-size: 14px;">Find the downloaded <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">extension.zip</code> in your Downloads folder and double-click to unzip it. Inside you'll see a folder called <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome-extension</code>.</div>
+            </div>
+        </div>
+
+        <!-- Step 3: Open Chrome extensions page -->
+        <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">3</div>
+            <div>
+                <div style="color: var(--text); font-weight: 600; font-size: 15px; margin-bottom: 4px;">Open Chrome's extensions page</div>
+                <div style="color: var(--text-secondary); font-size: 14px;">Open a new tab in Chrome, type <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome://extensions</code> in the address bar, and press Enter.</div>
+            </div>
+        </div>
+
+        <!-- Step 4: Load unpacked -->
+        <div style="display: flex; gap: 16px; margin-bottom: 8px;">
+            <div style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">4</div>
+            <div>
+                <div style="color: var(--text); font-weight: 600; font-size: 15px; margin-bottom: 4px;">Turn on Developer Mode and load the extension</div>
+                <div style="color: var(--text-secondary); font-size: 14px;">Toggle <strong style="color: var(--text);">Developer mode</strong> on (top-right switch). Then click <strong style="color: var(--text);">Load unpacked</strong> and select the <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 13px;">chrome-extension</code> folder from step 2.</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 24px; padding: 16px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; font-size: 14px; color: var(--text-secondary);">
+            <strong style="color: var(--accent);">That's it!</strong> The Assistant icon appears in your Chrome toolbar. Click it, enter your email, and you get 5 free analyses instantly. The green Analyze pill will appear on your current page.
         </div>
     </div>
 </section>
@@ -521,9 +558,41 @@
     </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq" style="max-width: 720px; margin: 0 auto;">
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-sub">Everything you need to know before getting started.</p>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 32px;">
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+            <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">Is it free to try?</h4>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Yes. You get 5 free analyses (15 credits) when you sign up. No credit card required. The free trial lasts 30 days.</p>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+            <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">Does it work on Firefox or Safari?</h4>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Currently it's Chrome-only. It works on any computer that runs Chrome, including Mac, Windows, and Linux.</p>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+            <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">Is my screen data stored?</h4>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">No. Short clips are sent to our AI for analysis and immediately discarded. We never store your screen recordings.</p>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+            <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">Can I cancel my subscription?</h4>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Yes, cancel anytime. Your credits remain available until your current billing period ends.</p>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+            <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">What if I run out of credits mid-month?</h4>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Buy a one-time credit pack ($5 for 1,000 or $15 for 4,000 analyses). No subscription needed — credits are added instantly.</p>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+            <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">How fast is the analysis?</h4>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Most analyses complete in 5-10 seconds. The extension records a 5-second clip, sends it to our AI, and displays the answer in a compact overlay.</p>
+        </div>
+    </div>
+</section>
+
 <!-- Footer -->
 <footer>
-    <p>Assistant &copy; 2025 · Built for speed and privacy</p>
+    <p>Assistant &copy; 2026 · Built for speed and privacy</p>
 </footer>
 
 <script>
