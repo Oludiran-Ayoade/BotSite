@@ -526,29 +526,68 @@
 <!-- Payment -->
 <section id="payment">
     <h2 class="section-title">Upgrade anytime.</h2>
-    <p class="section-sub">Pay with card. Credits appear in your extension automatically.</p>
+    <p class="section-sub">Pay with card, bank transfer, USSD, or mobile money. Credits appear in your extension automatically.</p>
 
-    <!-- Subscription Plans -->
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; max-width: 560px; margin: 0 auto 24px; text-align: center;">
-        <h3 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 18px;">Subscription Plans</h3>
-        <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px 0;">Monthly subscription · Cancel anytime · Visa, Mastercard, PayPal accepted</p>
-        <div id="card-payment-buttons" style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
-            <a href="https://dassistant.gumroad.com/l/hpesgi?variant=Starter" class="btn btn-primary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Starter — $19/mo (3,000 analyses)</a>
-            <a href="https://dassistant.gumroad.com/l/hpesgi?variant=Pro" class="btn btn-primary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Pro — $49/mo (15,000 analyses)</a>
-            <a href="https://dassistant.gumroad.com/l/hpesgi?variant=Power" class="btn btn-primary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Power — $89/mo (30,000 analyses)</a>
-        </div>
-        <p style="color: var(--text-muted); font-size: 12px; margin: 16px 0 0 0;">Secure checkout via Gumroad · Credits added to your account automatically</p>
+    <!-- Payment method toggle -->
+    <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 24px;">
+        <button id="tab-flutterwave" class="btn btn-primary" style="padding: 8px 20px; font-size: 13px;" onclick="switchPaymentMethod('flutterwave')">Flutterwave (Card/Bank/USSD)</button>
+        <button id="tab-gumroad" class="btn btn-secondary" style="padding: 8px 20px; font-size: 13px;" onclick="switchPaymentMethod('gumroad')">Gumroad (Card/PayPal)</button>
     </div>
 
-    <!-- Credit Packs (Top-ups) -->
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; max-width: 560px; margin: 0 auto; text-align: center;">
-        <h3 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 18px;">Credit Packs (Top-ups)</h3>
-        <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px 0;">One-time purchase · Use when you run out · No subscription needed</p>
-        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
-            <a href="https://dassistant.gumroad.com/l/kbttcp" class="btn btn-secondary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Credit Pack 1000 — $5 (1,000 analyses)</a>
-            <a href="https://dassistant.gumroad.com/l/ychluo" class="btn btn-secondary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Credit Pack 4000 — $15 (4,000 analyses)</a>
+    <!-- Flutterwave Payment -->
+    <div id="flutterwave-section">
+        <!-- Email input -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; max-width: 560px; margin: 0 auto 16px; text-align: center;">
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 12px 0;">Enter the email you used to sign in to the extension:</p>
+            <input type="email" id="flw-email" placeholder="you@example.com" style="width: 100%; max-width: 320px; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 14px; outline: none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
         </div>
-        <p style="color: var(--text-muted); font-size: 12px; margin: 16px 0 0 0;">Perfect for when you run out mid-month</p>
+
+        <!-- Subscription Plans -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; max-width: 560px; margin: 0 auto 24px; text-align: center;">
+            <h3 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 18px;">Subscription Plans</h3>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px 0;">Monthly subscription · Cancel anytime · Card, bank transfer, USSD, mobile money</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
+                <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('starter')">Starter — $19/mo (3,000 analyses)</button>
+                <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('pro')">Pro — $49/mo (15,000 analyses)</button>
+                <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('power')">Power — $89/mo (30,000 analyses)</button>
+            </div>
+        </div>
+
+        <!-- Credit Packs (Top-ups) -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; max-width: 560px; margin: 0 auto; text-align: center;">
+            <h3 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 18px;">Credit Packs (Top-ups)</h3>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px 0;">One-time purchase · Use when you run out · No subscription needed</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
+                <button class="btn btn-secondary" style="width: 100%;" onclick="payWithFlutterwave('credit_pack_1000')">Credit Pack 1000 — $5 (1,000 analyses)</button>
+                <button class="btn btn-secondary" style="width: 100%;" onclick="payWithFlutterwave('credit_pack_4000')">Credit Pack 4000 — $15 (4,000 analyses)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gumroad Payment (existing, hidden by default) -->
+    <div id="gumroad-section" style="display: none;">
+        <!-- Subscription Plans -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; max-width: 560px; margin: 0 auto 24px; text-align: center;">
+            <h3 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 18px;">Subscription Plans</h3>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px 0;">Monthly subscription · Cancel anytime · Visa, Mastercard, PayPal accepted</p>
+            <div id="card-payment-buttons" style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
+                <a href="https://dassistant.gumroad.com/l/hpesgi?variant=Starter" class="btn btn-primary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Starter — $19/mo (3,000 analyses)</a>
+                <a href="https://dassistant.gumroad.com/l/hpesgi?variant=Pro" class="btn btn-primary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Pro — $49/mo (15,000 analyses)</a>
+                <a href="https://dassistant.gumroad.com/l/hpesgi?variant=Power" class="btn btn-primary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Power — $89/mo (30,000 analyses)</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 12px; margin: 16px 0 0 0;">Secure checkout via Gumroad · Credits added to your account automatically</p>
+        </div>
+
+        <!-- Credit Packs (Top-ups) -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; max-width: 560px; margin: 0 auto; text-align: center;">
+            <h3 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 18px;">Credit Packs (Top-ups)</h3>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px 0;">One-time purchase · Use when you run out · No subscription needed</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
+                <a href="https://dassistant.gumroad.com/l/kbttcp" class="btn btn-secondary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Credit Pack 1000 — $5 (1,000 analyses)</a>
+                <a href="https://dassistant.gumroad.com/l/ychluo" class="btn btn-secondary gumroad-button" data-gumroad-single-product="true" style="width: 100%;">Credit Pack 4000 — $15 (4,000 analyses)</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 12px; margin: 16px 0 0 0;">Perfect for when you run out mid-month</p>
+        </div>
     </div>
 
     <div style="max-width: 560px; margin: 24px auto 0; text-align: left; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; font-size: 13px; line-height: 1.7; color: var(--text-secondary);">
@@ -617,6 +656,63 @@
         const payment = document.getElementById('payment');
         if (payment) {
             payment.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // Switch between Flutterwave and Gumroad payment methods
+    function switchPaymentMethod(method) {
+        const flw = document.getElementById('flutterwave-section');
+        const gum = document.getElementById('gumroad-section');
+        const tabFlw = document.getElementById('tab-flutterwave');
+        const tabGum = document.getElementById('tab-gumroad');
+        if (method === 'flutterwave') {
+            flw.style.display = 'block';
+            gum.style.display = 'none';
+            tabFlw.className = 'btn btn-primary';
+            tabGum.className = 'btn btn-secondary';
+        } else {
+            flw.style.display = 'none';
+            gum.style.display = 'block';
+            tabFlw.className = 'btn btn-secondary';
+            tabGum.className = 'btn btn-primary';
+        }
+    }
+
+    // Pay with Flutterwave — creates a payment session and redirects
+    async function payWithFlutterwave(plan) {
+        const email = document.getElementById('flw-email').value.trim();
+        if (!email || !email.includes('@')) {
+            alert('Please enter the email you used to sign in to the extension.');
+            document.getElementById('flw-email').focus();
+            return;
+        }
+
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.textContent = 'Redirecting to checkout...';
+        btn.disabled = true;
+
+        try {
+            const resp = await fetch('https://godsfavor.onrender.com/payment/flutterwave/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ plan: plan, email: email }),
+            });
+
+            const data = await resp.json();
+
+            if (data.payment_link) {
+                // Redirect to Flutterwave's checkout page
+                window.location.href = data.payment_link;
+            } else {
+                alert(data.detail || 'Could not start payment. Please try again.');
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        } catch (e) {
+            alert('Could not connect to our servers. Please check your internet and try again.');
+            btn.textContent = originalText;
+            btn.disabled = false;
         }
     }
 

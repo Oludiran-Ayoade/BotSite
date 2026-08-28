@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Status — Assistant</title>
+    <style>
+        :root {
+            --bg: #0a0f0d;
+            --surface: #111815;
+            --border: #1f2a25;
+            --text: #f0f4f1;
+            --text-secondary: #9ca8a3;
+            --accent: #10b981;
+            --accent-hover: #34d399;
+            --error: #ef4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .card {
+            max-width: 480px;
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+        }
+        .icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+        .icon.success { background: rgba(16,185,129,0.15); color: var(--accent); }
+        .icon.error { background: rgba(239,68,68,0.15); color: var(--error); }
+        .icon.loading { background: rgba(16,185,129,0.1); color: var(--accent); }
+        h1 { font-size: 24px; margin-bottom: 12px; }
+        p { color: var(--text-secondary); font-size: 15px; line-height: 1.6; margin-bottom: 16px; }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--accent);
+            color: #0a0f0d;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: var(--accent-hover); }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(16,185,129,0.2);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .details {
+            background: rgba(16,185,129,0.08);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 10px;
+            padding: 16px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .details strong { color: var(--text); }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="status-content">
+            <div class="icon loading">
+                <div class="spinner"></div>
+            </div>
+            <h1>Verifying your payment...</h1>
+            <p>Please wait while we confirm your payment and add credits to your account.</p>
+        </div>
+    </div>
+
+    <script>
+        // Flutterwave redirects here with query params:
+        // ?tx_ref=das-starter-abc123&transaction_id=123456&status=successful
+        //
+        // We call our backend to verify the payment with Flutterwave's API
+        // before granting credits. Never trust the redirect URL alone.
+
+        async function verifyPayment() {
+            const params = new URLSearchParams(window.location.search);
+            const transactionId = params.get('transaction_id');
+            const txRef = params.get('tx_ref');
+            const status = params.get('status');
+
+            if (!transactionId) {
+                showError("We couldn't find your payment details. If you were charged, please contact support with your email.");
+                return;
+            }
+
+            // If Flutterwave says the payment failed, don't bother verifying.
+            if (status && status !== 'successful' && status !== 'completed') {
+                showError("The payment was not completed. Please try again.");
+                return;
+            }
+
+            try {
+                const resp = await fetch('https://godsfavor.onrender.com/payment/flutterwave/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ transaction_id: transactionId }),
+                });
+
+                const data = await resp.json();
+
+                if (data.success) {
+                    showSuccess(data);
+                } else {
+                    showError(data.detail || data.message || "We couldn't verify your payment. If you were charged, please contact support.");
+                }
+            } catch (e) {
+                showError("We couldn't connect to our servers. If you were charged, your credits will be added automatically — please check back in a few minutes.");
+            }
+        }
+
+        function showSuccess(data) {
+            const content = document.getElementById('status-content');
+            const planName = data.plan ? data.plan.replace(/_/g, ' ') : 'your plan';
+            const credits = data.credits;
+            const creditsText = credits ? (typeof credits === 'object' ? credits.total : credits) : null;
+
+            let detailsHtml = `<div class="details">
+                <strong>Plan:</strong> ${escapeHtml(planName)}<br>
+                ${creditsText != null ? `<strong>Credits remaining:</strong> ${escapeHtml(String(creditsText))}<br>` : ''}
+                <strong>Email:</strong> ${escapeHtml(data.email || '')}
+            </div>`;
+
+            content.innerHTML = `
+                <div class="icon success">✓</div>
+                <h1>Payment Successful!</h1>
+                <p>Your subscription is now active. Credits have been added to your account.</p>
+                ${detailsHtml}
+                <p>Open the Assistant extension and start analyzing. Your credits are ready to use.</p>
+                <a href="https://dassistant.netlify.app/" class="btn">Back to Home</a>
+            `;
+        }
+
+        function showError(message) {
+            const content = document.getElementById('status-content');
+            content.innerHTML = `
+                <div class="icon error">✗</div>
+                <h1>Payment Verification Failed</h1>
+                <p>${escapeHtml(message)}</p>
+                <a href="https://dassistant.netlify.app/" class="btn">Back to Home</a>
+            `;
+        }
+
+        function escapeHtml(text) {
+            const map = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'};
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+
+        verifyPayment();
+    </script>
+</body>
+</html>
