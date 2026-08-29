@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Status — Assistant</title>
+    <title>Payment Status — dassistant</title>
     <style>
         :root {
             --bg: #0a0f0d;
@@ -100,7 +100,7 @@
 
     <script>
         // Flutterwave redirects here with query params:
-        // ?tx_ref=das-starter-abc123&transaction_id=123456&status=successful
+        // ?tx_ref=das-basic-abc123&transaction_id=123456&status=successful
         //
         // We call our backend to verify the payment with Flutterwave's API
         // before granting credits. Never trust the redirect URL alone.
@@ -146,6 +146,11 @@
             const planName = data.plan ? data.plan.replace(/_/g, ' ') : 'your plan';
             const credits = data.credits;
             const creditsText = credits ? (typeof credits === 'object' ? credits.total : credits) : null;
+            const isPack = data.plan && data.plan.includes('credit_pack');
+            const headline = isPack ? 'Credits Added!' : 'Subscription Active!';
+            const message = isPack
+                ? 'Your credit pack has been added to your account.'
+                : 'Your subscription is now active. Credits have been added to your account.';
 
             let detailsHtml = `<div class="details">
                 <strong>Plan:</strong> ${escapeHtml(planName)}<br>
@@ -156,9 +161,9 @@
             content.innerHTML = `
                 <div class="icon success">✓</div>
                 <h1>Payment Successful!</h1>
-                <p>Your subscription is now active. Credits have been added to your account.</p>
+                <p>${escapeHtml(message)}</p>
                 ${detailsHtml}
-                <p>Open the Assistant extension and start analyzing. Your credits are ready to use.</p>
+                <p>Open the dassistant extension and start analyzing. Your credits are ready to use.</p>
                 <a href="https://dassistant.netlify.app/" class="btn">Back to Home</a>
             `;
         }

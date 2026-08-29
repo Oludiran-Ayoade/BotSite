@@ -1,12 +1,12 @@
-# Assistant — Screen Assessment Tool
+# dassistant — Screen Assessment Tool
 
 A floating screen assistant that analyzes what's on your screen in real-time.
 
 ## Download
 
 Download the latest release for your platform:
-- **macOS**: [Assistant.dmg](#) (coming soon)
-- **Windows**: [Assistant.exe](#) (coming soon)
+- **macOS**: [dassistant.dmg](#) (coming soon)
+- **Windows**: [dassistant.exe](#) (coming soon)
 
 Or build from source (see below).
 
@@ -29,23 +29,27 @@ pip install pyinstaller
 ### Build the executable
 ```bash
 # macOS
-pyinstaller --onefile --windowed --name "Assistant" main.py
+pyinstaller --onefile --windowed --name "dassistant" main.py
 
 # Windows
-pyinstaller --onefile --windowed --name "Assistant" main.py
+pyinstaller --onefile --windowed --name "dassistant" main.py
 ```
 
 The built app will be in `dist/`.
 
 ## Payment
 
-Send USDT (TRC20) to the address shown on the website, then message us with your license key and transaction hash to activate your subscription.
+Payments are processed securely via Flutterwave (card, bank transfer, USSD).
+Visit the website to choose a plan or credit pack and pay.
 
 ## Pricing
 
 | Plan | Price | Credits |
 |------|-------|---------|
-| Free Trial | $0 | 15 analyses |
-| Monthly | $9/mo | 1,000 credits |
-| Pro | $19/mo | 3,000 credits |
-| Credit Packs | from $3 | 1,000–11,000 credits |
+| Free Trial | $0 | 4 analyses |
+| Basic | $5/mo | 150 analyses |
+| Plus | $15/mo | 600 analyses |
+| Pro | $39/mo | 2,500 analyses |
+| Starter Pack | $2 | 50 analyses |
+| Standard Pack | $5 | 200 analyses |
+| Big Pack | $10 | 500 analyses |
