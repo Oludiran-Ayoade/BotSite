@@ -359,7 +359,7 @@
             How to Install
         </a>
     </div>
-    <p class="download-note">5 free analyses · No credit card required · Takes 30 seconds to install</p>
+    <p class="download-note">10 free analyses · No credit card required · Takes 30 seconds to install</p>
 </div>
 
 <!-- Install Instructions -->
@@ -412,7 +412,7 @@
     </details>
 
     <div style="margin-top: 24px; padding: 16px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; font-size: 14px; color: var(--text-secondary); text-align: left;">
-        <strong style="color: var(--accent);">That's it!</strong> The Assistant icon appears in your Chrome toolbar. Click it, enter your email, and you get 5 free analyses instantly. The green Analyze pill will appear on your current page.
+        <strong style="color: var(--accent);">That's it!</strong> The Assistant icon appears in your Chrome toolbar. Click it, enter your email, and you get 10 free analyses instantly. The green Analyze pill will appear on your current page.
     </div>
 </section>
 
@@ -457,36 +457,36 @@
 <!-- Pricing -->
 <section id="pricing">
     <h2 class="section-title">Simple, transparent pricing.</h2>
-    <p class="section-sub">Start with a free trial. Upgrade when you need more. Pay with card.</p>
+    <p class="section-sub">Start with a free trial. Upgrade when you need more. Pay with card, bank transfer, or USSD.</p>
     <div style="text-align: center; margin-bottom: 32px;">
         <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 100px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: var(--accent); font-size: 14px; font-weight: 600;">
             <span style="width:6px;height:6px;border-radius:50%;background:var(--success);"></span>
-            Free Trial — 5 analyses, no credit card needed
+            Free Trial — 10 analyses, no credit card needed
         </div>
     </div>
 
     <div class="pricing-grid">
         <div class="price-card">
-            <h3>Starter</h3>
-            <div class="price">$19</div>
+            <h3>Basic</h3>
+            <div class="price">$5</div>
             <div class="price-period">per month</div>
             <ul>
-                <li>3,000 analyses per month</li>
-                <li>~100 analyses per day</li>
+                <li>150 analyses per month</li>
+                <li>~5 analyses per day</li>
                 <li>All assessment modes</li>
-                <li>Perfect for part-time use</li>
+                <li>Perfect for students</li>
                 <li>Cancel anytime</li>
             </ul>
             <button class="btn btn-primary" onclick="scrollToPayment()">Choose Plan</button>
         </div>
         <div class="price-card featured">
             <div class="badge">Most Popular</div>
-            <h3>Pro</h3>
-            <div class="price">$49</div>
+            <h3>Plus</h3>
+            <div class="price">$15</div>
             <div class="price-period">per month</div>
             <ul>
-                <li>15,000 analyses per month</li>
-                <li>~500 analyses per day</li>
+                <li>600 analyses per month</li>
+                <li>~20 analyses per day</li>
                 <li>All assessment modes</li>
                 <li>Best value for regular users</li>
                 <li>Cancel anytime</li>
@@ -494,24 +494,24 @@
             <button class="btn btn-primary" onclick="scrollToPayment()">Choose Plan</button>
         </div>
         <div class="price-card">
-            <h3>Power</h3>
-            <div class="price">$89</div>
+            <h3>Pro</h3>
+            <div class="price">$39</div>
             <div class="price-period">per month</div>
             <ul>
-                <li>30,000 analyses per month</li>
-                <li>~1,000 analyses per day</li>
+                <li>2,500 analyses per month</li>
+                <li>~80 analyses per day</li>
                 <li>All assessment modes</li>
-                <li>For heavy daily users</li>
+                <li>For power users and professionals</li>
                 <li>Cancel anytime</li>
             </ul>
             <button class="btn btn-primary" onclick="scrollToPayment()">Choose Plan</button>
         </div>
         <div class="price-card">
             <h3>Credit Packs</h3>
-            <div class="price">from $5</div>
+            <div class="price">from $2</div>
             <div class="price-period">one-time top-up</div>
             <ul>
-                <li>1,000 or 4,000 analyses</li>
+                <li>50, 200, or 500 analyses</li>
                 <li>Use alongside any plan</li>
                 <li>No subscription required</li>
                 <li>Perfect when you run out</li>
@@ -538,9 +538,9 @@
         <h3 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 18px;">Subscription Plans</h3>
         <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px 0;">Monthly subscription · Cancel anytime · Card, bank transfer, USSD, mobile money</p>
         <div style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
-            <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('starter')">Starter — $19/mo (3,000 analyses)</button>
-            <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('pro')">Pro — $49/mo (15,000 analyses)</button>
-            <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('power')">Power — $89/mo (30,000 analyses)</button>
+            <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('basic')">Basic — $5/mo (150 analyses)</button>
+            <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('plus')">Plus — $15/mo (600 analyses)</button>
+            <button class="btn btn-primary" style="width: 100%;" onclick="payWithFlutterwave('pro')">Pro — $39/mo (2,500 analyses)</button>
         </div>
     </div>
 
@@ -549,8 +549,9 @@
         <h3 style="margin: 0 0 8px 0; color: var(--text-primary); font-size: 18px;">Credit Packs (Top-ups)</h3>
         <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px 0;">One-time purchase · Use when you run out · No subscription needed</p>
         <div style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
-            <button class="btn btn-secondary" style="width: 100%;" onclick="payWithFlutterwave('credit_pack_1000')">Credit Pack 1000 — $5 (1,000 analyses)</button>
-            <button class="btn btn-secondary" style="width: 100%;" onclick="payWithFlutterwave('credit_pack_4000')">Credit Pack 4000 — $15 (4,000 analyses)</button>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="payWithFlutterwave('credit_pack_starter')">Starter Pack — $2 (50 analyses)</button>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="payWithFlutterwave('credit_pack_standard')">Standard Pack — $5 (200 analyses)</button>
+            <button class="btn btn-secondary" style="width: 100%;" onclick="payWithFlutterwave('credit_pack_big')">Big Pack — $10 (500 analyses)</button>
         </div>
     </div>
 
@@ -572,7 +573,7 @@
     <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 32px;">
         <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
             <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">Is it free to try?</h4>
-            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Yes. You get 5 free analyses (15 credits) when you sign up. No credit card required. The free trial lasts 30 days.</p>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Yes. You get 10 free analyses when you sign up. No credit card required. The free trial lasts 30 days.</p>
         </div>
         <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
             <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">Does it work on Firefox or Safari?</h4>
@@ -588,11 +589,11 @@
         </div>
         <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
             <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">What if I run out of credits mid-month?</h4>
-            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Buy a one-time credit pack ($5 for 1,000 or $15 for 4,000 analyses). No subscription needed — credits are added instantly.</p>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Buy a one-time credit pack ($2 for 50, $5 for 200, or $10 for 500 analyses). No subscription needed — credits are added instantly.</p>
         </div>
         <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
             <h4 style="color: var(--text); font-size: 15px; margin-bottom: 8px;">How fast is the analysis?</h4>
-            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Most analyses complete in 5-10 seconds. The extension records a 5-second clip, sends it to our AI, and displays the answer in a compact overlay.</p>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Most analyses complete in 5-10 seconds. The extension captures what's on your screen, sends it to our AI, and displays the answer in a compact overlay.</p>
         </div>
     </div>
 </section>
